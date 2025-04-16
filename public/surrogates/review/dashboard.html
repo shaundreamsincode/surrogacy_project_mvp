@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surrogacy Dashboard</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f7f9fc; display: flex; height: 100vh; }
+    .sidebar {
+      width: 220px;
+      background: #ffffff;
+      border-right: 1px solid #eee;
+      padding: 1rem;
+    }
+    .sidebar h2 { font-size: 18px; margin-bottom: 1rem; }
+    .sidebar a {
+      display: block;
+      padding: 0.5rem 0;
+      color: #333;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      color: #0077cc;
+    }
+    .main {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    .welcome {
+      font-size: 24px;
+      margin-bottom: 1rem;
+    }
+    .status-bar {
+      margin: 1rem 0;
+      padding: 1rem;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .status-item {
+      margin-bottom: 0.5rem;
+    }
+    .next-step, .notifications, .events, .message-box {
+      margin-top: 2rem;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    .next-step button, .notifications button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #0077cc;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+    }
+    .next-step button:hover, .notifications button:hover {
+      background: #005fa3;
+    }
+  </style>
+</head>
+<body>
+    <div id="sidebar">
+        <script>
+            const sidebarTarget = document.getElementById("sidebar");
+            fetch("../../shared/sidebar.html") // adjust if needed based on depth
+              .then(res => {
+                if (!res.ok) throw new Error("Sidebar not found");
+                return res.text();
+              })
+              .then(html => sidebarTarget.innerHTML = html)
+              .catch(err => sidebarTarget.innerHTML = "<p>⚠️ Sidebar failed to load.</p>");
+          </script>    
+    </div>
+  <div class="main">
+    <div class="welcome">👋 Welcome back, [First Name]</div>
+    <div class="status-bar">
+      <div class="status-item">✅ Legal Review: Approved</div>
+      <div class="status-item">🧠 Psych Review: Pending</div>
+      <div class="status-item">🩺 Medical Review: Not Started</div>
+      <div class="status-item">🎯 Match Preferences: Not Submitted</div>
+    </div>
+    <div class="next-step">
+      <h3>Next Step</h3>
+      <p>🧠 Complete your psychological review form and schedule a call with our psychologist.</p>
+      <button>Go to Psych Review</button>
+    </div>
+    <div class="notifications">
+      <h3>Notifications</h3>
+      <ul>
+        <li>📄 Missing OB record upload</li>
+        <li>📅 Your legal review call was marked complete</li>
+      </ul>
+    </div>
+    <div class="events">
+      <h3>Upcoming Events</h3>
+      <ul>
+        <li>📅 Psych call scheduled – Friday @ 10:00 AM</li>
+        <li>📅 Match intro call – Pending</li>
+      </ul>
+    </div>
+    <div class="message-box">
+      <h3>Message from Your Coordinator</h3>
+      <p>Hi! Just checking in to see if you need help with your psych form. Let me know!</p>
+    </div>
+  </div>
+</body>
+</html>
